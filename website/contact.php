@@ -12,13 +12,13 @@ session_start();
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css" />
 
 </head>
 
 <body>
     <section id="header">
-        <a href="index.php"><img src="img/logo.png" class="logo" alt="" /></a>
+        <a href="index.php"><img src="<?php echo $s3_base; ?>img/logo.png" class="logo" alt="" /></a>
 
         <div>
             <ul id="navbar">
@@ -93,7 +93,7 @@ session_start();
     <section id="form-details">
         <div class="people">
             <div>
-                <img src="img/people/a.jpeg" alt="" />
+                <img src="<?php echo $s3_base; ?>img/people/a.jpeg" alt="" />
                 <p>
                     <span>Ed</span> Founder and CEO <br />
                     Phone: +03120100830 <br />
@@ -101,7 +101,7 @@ session_start();
                 </p>
             </div>
             <div>
-                <img src="img/people/b.jpeg" alt="" />
+                <img src="<?php echo $s3_base; ?>img/people/b.jpeg" alt="" />
                 <p>
                     <span>Edd</span> Executive Marketing Manager <br />
                     Phone: +03000101230 <br />
@@ -109,7 +109,7 @@ session_start();
                 </p>
             </div>
             <div>
-                <img src="img/people/c.jpeg" alt="" />
+                <img src="<?php echo $s3_base; ?>img/people/c.jpeg" alt="" />
                 <p>
                     <span>Eddy</span> Customer Service Officer <br />
                     Phone: +03400190835 <br />
@@ -142,14 +142,14 @@ session_start();
         </div>
         <div class="col install">
             <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" />
+            <img src="<?php echo $s3_base; ?>img/pay/pay.png" />
         </div>
         <div class="copyright">
             <p>2021. byteBazaar. HTML CSS </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="<?php echo $s3_base; ?>script.js"></script>
 </body>
 
 </html>

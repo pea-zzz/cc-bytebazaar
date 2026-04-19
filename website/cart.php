@@ -9,7 +9,7 @@ if (isset($_GET['re'])) {
     include("include/connect.php");
     $aid = $_SESSION['aid'];
     $pid = $_GET['re'];
-    $query = "DELETE FROM CART WHERE aid = $aid and pid = $pid";
+    $query = "DELETE FROM cart WHERE aid = $aid and pid = $pid";
 
     $result = mysqli_query($con, $query);
     header("Location: cart.php");
@@ -47,7 +47,7 @@ if (isset($_POST['check'])) {
 
         $newqty = $_POST["$pid-qt"];
 
-        $query = "UPDATE CART SET cqty = $newqty where aid = $aid and pid = $pid";
+        $query = "UPDATE cart SET cqty = $newqty where aid = $aid and pid = $pid";
 
         mysqli_query($con, $query);
 
@@ -70,14 +70,14 @@ if (isset($_POST['check'])) {
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css" />
 
 
 </head>
 
 <body onload="totala()">
     <section id="header">
-        <a href="index.php"><img src="img/logo.png" class="logo" alt="" /></a>
+        <a href="index.php"><img src="<?php echo $s3_base; ?>img/logo.png" class="logo" alt="" /></a>
 
         <div>
             <ul id="navbar">
@@ -159,7 +159,7 @@ if (isset($_POST['check'])) {
               <td>
                 <a href='cart.php?re=$pid'><i class='far fa-times-circle'></i></a>
               </td>
-              <td><img src='product_images/$img' alt='' /></td>
+              <td><img src='" . $s3_base . "product_images/$img' alt='' /></td>
               <td>$pname</td>
               <td class='pr'>$$price</td>
               <td><input type='number' class = 'aqt' value='$cqty' min = '1' max = '$qty' onchange='subprice()' /></td>
@@ -253,14 +253,14 @@ if (isset($_POST['check'])) {
         </div>
         <div class="col install">
             <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" />
+            <img src="<?php echo $s3_base; ?>img/pay/pay.png" />
         </div>
         <div class="copyright">
             <p>2021. byteBazaar. HTML CSS </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="<?php echo $s3_base; ?>script.js"></script>
 </body>
 
 </html>

@@ -13,7 +13,7 @@ session_start();
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css" />
 
 <style>
    .rating {
@@ -76,7 +76,7 @@ input[type="radio"] {
       include("include/connect.php");
 
         $pid = $row['pid'];
-        $query = "select * from products where pid = $pid";
+        $query = "select * from `products` where pid = $pid";
 
         $result2 = mysqli_query($con, $query);
 
@@ -88,7 +88,7 @@ input[type="radio"] {
       echo "
         <tr>
           <td>$pname</td>
-          <td><img src='product_images/$img' width='20px' height='20px' alt='Product 1'></td>
+          <td><img src='" . $s3_base . "product_images/$img' width='20px' height='20px' alt='Product 1'></td>
           <td>$price</td>
           <td><input type='text' name='$pid-review'></td>
           <td>
@@ -108,7 +108,7 @@ input[type="radio"] {
     } 
     ?>
 
-        <script src="script.js"></script>
+        <script src="<?php echo $s3_base; ?>script.js"></script>
 </body>
 
 </html>

@@ -16,14 +16,14 @@ if (empty($_SESSION['aid']))
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css" />
 
 
 </head>
 
 <body>
     <section id="header">
-        <a href="index.php"><img src="img/logo.png" class="logo" alt="" /></a>
+        <a href="index.php"><img src="<?php echo $s3_base; ?>img/logo.png" class="logo" alt="" /></a>
 
         <div>
             <ul id="navbar">
@@ -68,27 +68,27 @@ if (empty($_SESSION['aid']))
 
     <section id="feature" class="section-p1">
         <div class="fe-box">
-            <img src="img/features/f1.png" alt="" />
+            <img src="<?php echo $s3_base; ?>img/features/f1.png" alt="" />
             <h6>Free Shipping</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f2.png" alt="" />
+            <img src="<?php echo $s3_base; ?>img/features/f2.png" alt="" />
             <h6>Online Order</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f3.png" alt="" />
+            <img src="<?php echo $s3_base; ?>img/features/f3.png" alt="" />
             <h6>Save Money</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f4.png" alt="" />
+            <img src="<?php echo $s3_base; ?>img/features/f4.png" alt="" />
             <h6>Promotions</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f5.png" alt="" />
+            <img src="<?php echo $s3_base; ?>img/features/f5.png" alt="" />
             <h6>Happy Sell</h6>
         </div>
         <div class="fe-box">
-            <img src="img/features/f6.png" alt="" />
+            <img src="<?php echo $s3_base; ?>img/features/f6.png" alt="" />
             <h6>24/7 Support</h6>
         </div>
     </section>
@@ -159,14 +159,14 @@ if (empty($_SESSION['aid']))
         </div>
         <div class="col install">
             <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" />
+            <img src="<?php echo $s3_base; ?>img/pay/pay.png" />
         </div>
         <div class="copyright">
             <p>2021. byteBazaar. HTML CSS </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="<?php echo $s3_base; ?>script.js"></script>
 </body>
 
 </html>

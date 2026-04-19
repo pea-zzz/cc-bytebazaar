@@ -1,8 +1,10 @@
 <?php
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include("include/connect.php");
 
 if (isset($_POST['sub'])) {
-    include("include/connect.php");
 
     $aid = $_SESSION['aid'];
     $add = $_POST['houseadd'];
@@ -28,7 +30,7 @@ if (isset($_POST['sub'])) {
     $query = "SELECT * FROM cart JOIN products ON cart.pid = products.pid WHERE aid = $aid";
 
     $result = mysqli_query($con, $query);
-    global $tott;
+    $tott = 0; // Initialize total
     while ($row = mysqli_fetch_assoc($result)) {
         $pid = $row['pid'];
         $pname = $row['pname'];
@@ -39,22 +41,20 @@ if (isset($_POST['sub'])) {
         $img = $row['img'];
         $brand = $row['brand'];
         $cqty = $row['cqty'];
-        $tott = $price * $cqty;
+        $tott += ($price * $cqty); 
 
-        $query = "insert into `order-details` (oid, pid, qty) values ($oid, $pid, $cqty)";
+        $query_detail = "insert into order_details (oid, pid, qty) values ($oid, $pid, $cqty)";
+        mysqli_query($con, $query_detail);
 
-        mysqli_query($con, $query);
-
-        $query = "update products set qtyavail = qtyavail - $cqty where pid = $pid";
-
-        mysqli_query($con, $query);
+        $query_update = "update products set qtyavail = qtyavail - $cqty where pid = $pid";
+        mysqli_query($con, $query_update);
     }
 
-    $query = "delete from cart where aid = $aid";
+    $query = "delete from `cart` where aid = $aid";
 
     mysqli_query($con, $query);
 
-    $query = "update orders set total = $tott where oid = $oid";
+    $query = "update `orders` set total = $tott where oid = $oid";
 
     mysqli_query($con, $query);
 
@@ -76,7 +76,7 @@ if (isset($_POST['sub'])) {
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css" />
 
     <style>
         #account-field {
@@ -115,7 +115,7 @@ if (isset($_POST['sub'])) {
 
 <body>
     <section id="header">
-        <a href="index.php"><img src="img/logo.png" class="logo" alt="" /></a>
+        <a href="index.php"><img src="<?php echo $s3_base; ?>img/logo.png" class="logo" alt="" /></a>
 
         <div>
             <ul id="navbar">
@@ -167,7 +167,7 @@ if (isset($_POST['sub'])) {
                 <div>
                     <input class="input2" type="radio" id="ac2" name="dbt" value="bank" checked
                         onchange="showInputBox()"> Paypal/Visa/MasterCard <span>
-                        <img src="img/pay/pay.png" alt="">
+                        <img src="<?php echo $s3_base; ?>img/pay/pay.png" alt="">
                     </span>
                 </div>
                 <button name="sub" type="submit" class="btn112">Place Order</button>
@@ -179,7 +179,6 @@ if (isset($_POST['sub'])) {
                     </tr>
 
                     <?php
-                    include("include/connect.php");
 
                     $aid = $_SESSION['aid'];
 
@@ -251,14 +250,14 @@ if (isset($_POST['sub'])) {
         </div>
         <div class="col install">
             <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" />
+            <img src="<?php echo $s3_base; ?>img/pay/pay.png" />
         </div>
         <div class="copyright">
             <p>2021. byteBazaar. HTML CSS </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="<?php echo $s3_base; ?>script.js"></script>
 </body>
 
 </html>

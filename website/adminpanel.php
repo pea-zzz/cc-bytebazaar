@@ -10,7 +10,7 @@
 <!-- Sidenav -->
 <div class="sidenav">
     <div class="profile">
-        <img src="https://imdezcode.files.wordpress.com/2020/02/imdezcode-logo.png" alt="" width="100" height="100">
+        <img src="<?php echo $s3_base; ?>https://imdezcode.files.wordpress.com/2020/02/imdezcode-logo.png" alt="" width="100" height="100">
 
         <div class="name">
             Ahmad Khan

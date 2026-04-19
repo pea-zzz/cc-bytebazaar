@@ -3,7 +3,7 @@ include("include/connect.php");
 session_start();
 // Perform your desired action here
 $aid = $_SESSION['aid'];
-$query = "DELETE FROM CART WHERE aid = $aid";
+$query = "DELETE FROM cart WHERE aid = $aid";
 
 $result = mysqli_query($con, $query);
 $_SESSION['aid'] = -1;

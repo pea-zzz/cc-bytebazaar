@@ -16,7 +16,16 @@ if (isset($_POST['ins'])) {
 		exit();
 	}
 
-	move_uploaded_file($temp_image, "product_images/$image");
+    try {
+        $s3Client->putObject([
+            'Bucket' => $bucketName,
+            'Key'    => "product_images/" . $image,
+            'SourceFile' => $temp_image,
+            'ContentType' => $_FILES['photo']['type']
+        ]);
+    } catch (Exception $e) {
+        echo "<script>alert('S3 Upload Failed: " . $e->getMessage() . "')</script>";
+    }
 
 	$query = "insert into `products`(pname, category, description, price, qtyavail, img, brand) values ('$pname', '$category', '$description', '$price', '$quantity', '$image', '$brand')";
 
@@ -53,7 +62,17 @@ if (isset($_POST['submitt'])) {
 	}
 
 	if (!empty($image))
-		move_uploaded_file($temp_image, "product_images/$image");
+        
+		try {
+            $s3Client->putObject([
+                'Bucket' => $bucketName,
+                'Key'    => "product_images/" . $image,
+                'SourceFile' => $temp_image,
+                'ContentType' => $_FILES['photo']['type']
+            ]);
+        } catch (Exception $e) {
+            echo "<script>alert('S3 Upload Failed: " . $e->getMessage() . "')</script>";
+        }
 
 	if (!empty($image))
 		$query = "Update `products` set pname = '$pname', category = '$category', description = '$description', qtyavail = $quantity, brand ='$brand', price = $price, img ='$image' where pid = $pid2";
@@ -84,7 +103,7 @@ if (isset($_GET['odd'])) {
 
 <head>
     <title>Ecommerce Inventory Management</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css">
     <style>
     #d1 {
 
@@ -409,7 +428,7 @@ if (isset($_GET['odd'])) {
                     <?php
 					if (isset($_GET['pidd'])) {
 						$id = $_GET['pidd'];
-						$query = "select * FROM products WHERE pid = $id";
+						$query = "select * FROM `products` WHERE pid = $id";
 
 						$result = mysqli_query($con, $query);
 						$row = mysqli_fetch_assoc($result);
@@ -505,7 +524,7 @@ if (isset($_GET['odd'])) {
 										<td>$cat</td>
 										<td>$price</td>
 										<td>$qty</td>
-										<td><img src='product_images/$img' alt='' /></td>
+										<td><img src='" . $s3_base . "product_images/$img' alt='' /></td>
 										<td>$brand</td>
 									
 										<td><a href ='inventory.php?pid=$pid' class='insert-btn'>Delete</button></td>

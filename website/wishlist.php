@@ -28,7 +28,7 @@ if (isset($_GET['re'])) {
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="<?php echo $s3_base; ?>style.css" />
     <script>
 window.addEventListener("beforeunload", function() {
   // Call a PHP script to log out the user
@@ -41,7 +41,7 @@ window.addEventListener("beforeunload", function() {
 
 <body>
     <section id="header">
-        <a href="index.php"><img src="img/logo.png" class="logo" alt="" /></a>
+        <a href="index.php"><img src="<?php echo $s3_base; ?>img/logo.png" class="logo" alt="" /></a>
 
         <div>
             <ul id="navbar">
@@ -118,7 +118,7 @@ window.addEventListener("beforeunload", function() {
           <td>
             <a href='wishlist.php?re=$pid'><i class='far fa-times-circle'></i></a>
           </td>
-          <td><img src='product_images/$img' alt='' /></td>
+          <td><img src='" . $s3_base . "product_images/$img' alt='' /></td>
           <td>$pname</td>
           <td class='pr'>$$price</td>
         </tr>
@@ -152,14 +152,14 @@ window.addEventListener("beforeunload", function() {
         </div>
         <div class="col install">
             <p>Secured Payment Gateways</p>
-            <img src="img/pay/pay.png" />
+            <img src="<?php echo $s3_base; ?>img/pay/pay.png" />
         </div>
         <div class="copyright">
             <p>2021. byteBazaar. HTML CSS </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="<?php echo $s3_base; ?>script.js"></script>
 </body>
 
 </html>
